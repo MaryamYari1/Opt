@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Vision Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#16242b;--muted:#53656d;--teal:#0f5c66;--tint:#e7f0f1;--line:#d5e1e3;--bg:#ffffff;--r:14px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:"Public Sans",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;font-size:17px}
+h1,h2,h3{font-family:Literata,Georgia,serif;line-height:1.2}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+/* header */
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Literata,serif;font-weight:700;font-size:1.15rem}
+nav ul{list-style:none;display:flex;gap:28px;padding:0}
+nav a{text-decoration:none;font-weight:500;color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a.on{color:var(--teal);border-color:var(--teal)}
+.burger{display:none;background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--ink)}
+
+/* views */
+.view{display:none}
+.view.on{display:block}
+
+/* hero */
+.hero{padding:88px 0 72px;text-align:center}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);max-width:15ch;margin:0 auto 18px}
+.hero p{color:var(--muted);max-width:46ch;margin:0 auto 32px;font-size:1.1rem}
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:600;padding:13px 28px;border-radius:9px;border:0;cursor:pointer;font-size:1rem}
+.btn:hover{background:#0b464e}
+.btn.alt{background:#fff;color:var(--teal);border:2px solid var(--teal)}
+
+/* cards */
+.sec{padding:24px 0 72px}
+.sec h2{font-size:1.7rem;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:12px;background:#fff}
+.ico{width:44px;height:44px;border-radius:12px;background:var(--tint);display:grid;place-items:center}
+.card h3{font-size:1.2rem}
+.card p{color:var(--muted);font-size:.97rem;flex:1}
+.soon{font-weight:600;font-size:.9rem;color:var(--teal)}
+
+/* page heads, about */
+.page{padding:64px 0 80px;max-width:720px}
+.page h1{font-size:clamp(2rem,5vw,2.8rem);margin-bottom:18px}
+.page p{margin-bottom:16px;color:var(--muted)}
+.page h2{font-size:1.4rem;margin:34px 0 12px}
+.page ul{padding-left:20px;color:var(--muted)}
+.list{display:grid;gap:16px;margin-top:30px}
+.row{border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.row h3{font-size:1.15rem;margin-bottom:6px}
+.row p{margin:0 0 8px}
+
+/* contact band + footer */
+.band{background:var(--tint);padding:52px 0;text-align:center}
+.band h2{font-size:1.5rem;margin-bottom:10px}
+.band p{color:var(--muted);margin-bottom:22px}
+footer{background:var(--ink);color:#d3e0e3;padding:38px 0;text-align:center;font-size:.92rem}
+footer .soc{display:flex;gap:18px;justify-content:center;margin-bottom:16px}
+footer a{color:#fff;font-weight:500}
+footer p{max-width:62ch;margin:0 auto 8px}
+
+@media(max-width:760px){
+  .burger{display:block}
+  nav{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line)}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:8px 22px 16px}
+  nav a{display:block;padding:12px 0}
+  .grid{grid-template-columns:1fr}
+  .hero{padding:56px 0 48px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="Vision Notes home">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="#0f5c66" stroke-width="2" aria-hidden="true"><path d="M2 16s5-9 14-9 14 9 14 9-5 9-14 9S2 16 2 16z"/><circle cx="16" cy="16" r="4.5" fill="#0f5c66"/></svg>
+      Vision Notes
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#home" data-v="home">Home</a></li>
+        <li><a href="#articles" data-v="articles">Articles</a></li>
+        <li><a href="#about" data-v="about">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="view" id="home">
+  <div class="wrap hero">
+    <h1>Eye health, explained clearly</h1>
+    <br>
+    <a class="btn" href="#articles">Read the articles</a>
+  </div>
+  <div class="wrap sec">
+    <h2>Latest articles</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f5c66" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h3>Why screens dry out our eyes</h3>
+        <p>We blink less while reading screens, which can unsettle the tear film. Here is what that means and what helps.</p>
+        <span class="soon">Coming soon</span>
+      </article>
+      <article class="card">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f5c66" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>What does an OCT scan tell you?</h3>
+        <p>A plain-language tour of the scan that images the layers of your retina, and why your optometrist asks for it.</p>
+        <span class="soon">Coming soon</span>
+      </article>
+      <article class="card">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f5c66" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Nearsightedness in children</h3>
+        <p>Myopia is becoming more common in children. Learn what parents can watch for and when to book an eye exam.</p>
+        <span class="soon">Coming soon</span>
+      </article>
+    </div>
+  </div>
+  <div class="band">
+    <div class="wrap">
+      <h2>Need clear, accurate eye care content?</h2>
+      <br>
+      <!-- Replace with your real email -->
+      <a class="btn" href="mailto:maryam.yari.one@gmail.com">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="view" id="articles">
+  <div class="wrap page">
+    <h1>Articles</h1>
+    <p>Patient education on common eye conditions, written in plain language and cited to current sources.</p>
+    <div class="list">
+      <div class="row"><h3>Why screens dry out our eyes</h3><p>Blinking, the tear film, and simple habits that help.</p><span class="soon">Coming soon</span></div>
+      <div class="row"><h3>What does an OCT scan tell you?</h3><p>How the scan works and what your results can show.</p><span class="soon">Coming soon</span></div>
+      <div class="row"><h3>Nearsightedness in children</h3><p>Signs for parents and when to see an optometrist.</p><span class="soon">Coming soon</span></div>
+    </div>
+    <!-- When an article is ready, replace "Coming soon" with: <a href="your-article.html">Read more</a> -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="view" id="about">
+  <div class="wrap page">
+    <h1>About</h1>
+    
+    <p>I write eye health content that is accurate, readable, and referenced to reliable sources, so patients can understand their eyes and clinics can share trustworthy information.</p>
+    <h2>What I write</h2>
+    <ul>
+      <li>Patient education articles</li>
+      <li>Blog content for eye care practices</li>
+      <li>Plain-language explainers on eye conditions and diagnostic tests</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="soc">
+      <!-- Replace # with your real profile links -->
+   
+    </div>
+    <p>This site is for general education and does not replace an eye examination or professional medical advice.</p>
+    <p>&copy; 2026 Vision Notes. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var views=["home","articles","about"],nav=document.getElementById("nav"),burger=document.getElementById("burger");
+  function show(){
+    var h=(location.hash||"#home").slice(1);if(views.indexOf(h)<0)h="home";
+    views.forEach(function(v){document.getElementById(v).classList.toggle("on",v===h)});
+    document.querySelectorAll("nav a").forEach(function(a){a.classList.toggle("on",a.dataset.v===h)});
+    nav.classList.remove("open");burger.setAttribute("aria-expanded","false");window.scrollTo(0,0);
+  }
+  burger.addEventListener("click",function(){
+    var o=nav.classList.toggle("open");burger.setAttribute("aria-expanded",o);
+  });
+  window.addEventListener("hashchange",show);show();
+})();
+
+</script>
+</body>
+</html>
