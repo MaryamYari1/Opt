@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css">
 <style>
 :root{
-  --bg:#FFFFFF; --soft:#F3F8F9; --ink:#12303B; --muted:#5A7480; --teal:#0E6B73;
-  --teal-dark:#0A4F55; --line:#E1EBEE; --amber:#E8B04B; --mark:#F6DFA0; --white:#fff;
+  --bg:#FFFFFF; --soft:#F6F4F1; --ink:#2B2B2B; --muted:#6B6B6B; --accent:#df7560;
+  --accent-dark:#B93A33; --tint:#FBE6E3; --line:#E8E6E3; --amber:#E8B04B; --mark:#ffeab0; --white:#fff; --frame:#b4b2b2;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -16,13 +16,13 @@ body{font-family:"Sahel",Tahoma,sans-serif;background:var(--bg);color:var(--ink)
 a{color:inherit}
 :focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 
-/* header: centered */
+/* header: brand at the start, menu at the end (Ness Labs style) */
 header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.bar{max-width:960px;margin:0 auto;padding:12px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center}
-.brand{width:100%;text-align:center;font-weight:700;color:var(--teal)}
-nav{width:100%;display:flex;justify-content:center;flex-wrap:wrap;gap:18px;font-size:.95rem}
-nav a{text-decoration:none;color:var(--muted)}
-nav a:hover{color:var(--teal)}
+.bar{max-width:960px;margin:0 auto;padding:14px 20px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:700;color:var(--ink);font-size:1.05rem;line-height:1.4}
+nav{display:flex;flex-wrap:wrap;gap:26px;font-size:.92rem}
+nav a{text-decoration:none;color:var(--ink)}
+nav a:hover{color:var(--accent)}
 
 .wrap{max-width:960px;margin:auto;padding:0 20px}
 section{padding:72px 0}
@@ -38,10 +38,10 @@ mark{background:var(--mark);color:var(--ink);padding:0 .25em;border-radius:6px}
 .lead{color:var(--muted);font-size:1.15rem;max-width:520px;margin:0 auto 30px}
 
 /* buttons */
-.btn{display:inline-block;background:var(--teal);color:var(--white);padding:11px 28px;border-radius:8px;text-decoration:none;font:inherit;border:0;cursor:pointer}
-.btn:hover{background:var(--teal-dark)}
-.btn.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal)}
-.btn.ghost:hover{background:#E3F1F2}
+.btn{display:inline-block;background:var(--accent);color:var(--white);padding:11px 28px;border-radius:8px;text-decoration:none;font:inherit;border:0;cursor:pointer}
+.btn:hover{background:var(--accent-dark)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn.ghost:hover{background:var(--tint)}
 .btn[hidden]{display:none}
 
 /* articles carousel: exactly 3 full cards per view */
@@ -49,12 +49,12 @@ mark{background:var(--mark);color:var(--ink);padding:0 .25em;border-radius:6px}
 .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 2px;scrollbar-width:none;padding:4px 2px}
 .track::-webkit-scrollbar{display:none}
 .card{flex:0 0 calc((100% - 32px) / 3);min-height:210px;scroll-snap-align:start;display:flex;flex-direction:column;text-align:right;background:var(--soft);border:1px solid transparent;border-radius:14px;padding:22px;font:inherit;color:var(--ink);cursor:pointer}
-.card:hover{border-color:var(--teal);background:var(--white)}
+.card:hover{border-color:var(--accent);background:var(--white)}
 .card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
 .card p{color:var(--muted);font-size:.93rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.card .more{margin-top:auto;padding-top:12px;color:var(--teal);font-size:.9rem;font-weight:700}
-.arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--teal);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;box-shadow:0 2px 6px rgba(18,48,59,.15)}
-.arrow:hover{background:#E3F1F2}
+.card .more{margin-top:auto;padding-top:12px;color:var(--accent);font-size:.9rem;font-weight:700}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--accent);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;box-shadow:0 2px 6px rgba(30,30,30,.15)}
+.arrow:hover{background:var(--tint)}
 .arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .arrow.right{right:-18px}
 .arrow.left{left:-18px}
@@ -66,42 +66,44 @@ mark{background:var(--mark);color:var(--ink);padding:0 .25em;border-radius:6px}
 .item{background:var(--mark);border-radius:14px;padding:20px 22px}
 .item h3{font-size:1.05rem;margin-bottom:2px}
 .item p{color:var(--ink);font-size:.95rem}
-.item .date{font-size:.8rem;color:var(--teal-dark)}
+.item .date{font-size:.8rem;color:var(--accent-dark)}
 
 /* optics: three plain columns */
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
-.cols > div{border-top:3px solid var(--teal);padding-top:16px}
+.cols > div{border-top:3px solid var(--accent);padding-top:16px}
 .cols h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
 .cols p{color:var(--muted)}
 .updated{margin-top:28px;text-align:center;font-size:.85rem;color:var(--muted)}
 .updated:empty{display:none}
 
 /* closing dark block */
-.closing{background:var(--teal-dark);color:var(--white);text-align:center}
+.closing{background:var(--muted);color:var(--white);text-align:center}
 .closing h2{margin-bottom:6px}
-.closing .sub{color:#BFD9DC;margin-bottom:18px}
-.closing p{color:#E3F1F2}
+.closing .sub{color:#CFCFCF;margin-bottom:18px}
+.closing p{color:#EDEDED}
 .contact-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:24px}
-.closing .btn{background:var(--white);color:var(--teal-dark)}
-.closing .btn:hover{background:#E3F1F2}
+.closing .btn{background:var(--white);color:var(--ink)}
+.closing .btn:hover{background:#EDEDED}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:36px}
-.chips a{padding:3px 16px;border:1px solid rgba(255,255,255,.35);border-radius:999px;text-decoration:none;color:var(--white);font-size:.9rem}
+.chips a{padding:3px 16px;border-radius:9px;text-decoration:none;color:var(--white);font-size:.9rem}
 .chips a:hover{background:rgba(255,255,255,.12)}
 
 /* popups */
 dialog{border:1px solid var(--line);border-radius:12px;padding:0;max-width:420px;width:calc(100% - 40px);margin:12vh auto auto;background:var(--white);color:var(--ink);font-family:inherit;text-align:center}
-dialog::backdrop{background:rgba(18,48,59,.45)}
+dialog::backdrop{background:rgba(30,30,30,.45)}
 .inner{padding:26px 22px}
 .inner h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
 .inner p{color:var(--muted);font-size:.95rem;margin-bottom:14px}
 .inner .body{text-align:right;color:var(--ink);white-space:pre-line;max-height:60vh;overflow-y:auto}
-.phone-big{display:block;direction:ltr;font-size:1.7rem;font-weight:700;color:var(--teal);text-decoration:none;margin-bottom:16px}
+.phone-big{display:block;direction:ltr;font-size:1.7rem;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:16px}
 .inner .row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
 footer{padding:24px 0;color:var(--muted);font-size:.88rem;text-align:center}
 
-/* tablet: 2 full cards */
+/* tablet: 2 full cards, menu stacked */
 @media (max-width:700px){
+  .bar{flex-direction:column;justify-content:center;gap:2px;text-align:center}
+  nav{justify-content:center;gap:18px}
   section{padding:52px 0}
   .hero{padding:60px 0 52px}
   .cols{grid-template-columns:1fr;gap:26px}
@@ -135,14 +137,15 @@ footer{padding:24px 0;color:var(--muted);font-size:.88rem;text-align:center}
 
   <section class="hero">
     <h1>مرکز بهداشت <mark>دانشگاه تهران</mark></h1>
-    <p class="lead">واحد اپتومتری و چشم پزشکی</p>
+    <p class="lead"><h2>واحد اپتومتری و چشم پزشکی</h2></p>
+    <br>
     <a class="btn" href="#" data-call>دریافت نوبت تلفنی</a>
   </section>
 
   <section id="education">
     <div class="head">
       <h2>مقالات آموزشی</h2>
-      <p class="sub">مطالب کوتاه و ساده درباره‌ی سلامت چشم</p>
+    
     </div>
     <div class="carousel">
       <button class="arrow right" id="arrowRight" type="button" aria-label="مقاله‌های قبلی">
@@ -165,7 +168,7 @@ footer{padding:24px 0;color:var(--muted);font-size:.88rem;text-align:center}
 
   <section id="optics">
     <div class="head">
-      <h2>عینک‌فروشی و بیمه</h2>
+      <h2>واحد ساخت عینک</h2>
       <p class="sub">اطلاعات پرداخت و بیمه‌های طرف قرارداد</p>
     </div>
     <div class="cols">
@@ -175,7 +178,7 @@ footer{padding:24px 0;color:var(--muted);font-size:.88rem;text-align:center}
       </div>
       <div>
         <h3>شرایط پرداخت</h3>
-        <p>(اینجا شرایط پرداخت و تخفیف‌ها را بنویسید)</p>
+        <p>پرداخت به صورت نقد و اقساط</p>
       </div>
       <div>
         <h3>ساعت کاری عینک‌فروشی</h3>
@@ -197,11 +200,8 @@ footer{padding:24px 0;color:var(--muted);font-size:.88rem;text-align:center}
       <a class="btn" href="tel:02161112838">تماس با پذیرش</a>
       <a class="btn" data-telegram href="#" target="_blank" rel="noopener" hidden>کانال تلگرام</a>
     </div>
-    <div class="chips">
-      <a href="#education">آموزش</a>
-      <a href="#news">اخبار</a>
-      <a href="#optics">عینک سازی</a>
-    </div>
+
+    
   </div>
 </section>
 
